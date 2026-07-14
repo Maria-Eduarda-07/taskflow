@@ -23,3 +23,6 @@ class TaskManager:
             print(f"\nTarefa {indice}")
             print(tarefa)
             print("-" * 30)
+
+    def quantidade_tarefas(self):
+        return len(self.tarefas)
