@@ -39,6 +39,12 @@ class TaskManager:
             return True
         return False
 
+    def concluir_tarefa(self, indice):
+        if 0 <= indice < len(self.tarefas):
+            self.tarefas[indice].concluir()
+            return True
+        return False
+
 
 def menu():
     gerenciador = TaskManager()
@@ -49,7 +55,8 @@ def menu():
         print("2 - Listar tarefas")
         print("3 - Editar tarefa")
         print("4 - Excluir tarefa")
-        print("5 - Sair")
+        print("5 - Concluir tarefa")
+        print("6 - Sair")
 
         opcao = input("Escolha uma opção: ")
 
@@ -99,6 +106,22 @@ def menu():
                 print("\n❌ Por favor, digite um número válido!")
 
         elif opcao == "5":
+            gerenciador.listar_tarefas()
+            if gerenciador.quantidade_tarefas() == 0:
+                continue
+
+            try:
+                numero = int(
+                    input("\nNúmero da tarefa que deseja concluir: ")) - 1
+
+                if gerenciador.concluir_tarefa(numero):
+                    print("\n✅ Tarefa marcada como concluída!")
+                else:
+                    print("\n❌ Tarefa não encontrada.")
+            except ValueError:
+                print("\n❌ Por favor, digite um número válido!")
+
+        elif opcao == "6":
             print("\nEncerrando o sistema...")
             break
         else:
