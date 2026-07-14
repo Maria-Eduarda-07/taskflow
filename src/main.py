@@ -1,9 +1,18 @@
-from task import Task
+from task_manager import TaskManager
 
-tarefa = Task(
+
+gerenciador = TaskManager()
+
+gerenciador.adicionar_tarefa(
     "Fazer relatório",
-    "Escrever documentação do projeto",
+    "Escrever documentação",
     "Alta"
 )
 
-print(tarefa)
+gerenciador.adicionar_tarefa(
+    "Criar testes",
+    "Implementar testes unitários",
+    "Média"
+)
+
+gerenciador.listar_tarefas()
