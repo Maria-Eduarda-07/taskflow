@@ -9,7 +9,8 @@ def menu():
         print("1 - Adicionar tarefa")
         print("2 - Listar tarefas")
         print("3 - Editar tarefa")
-        print("4 - Sair")
+        print("4 - Excluir tarefa")
+        print("5 - Sair")
 
         opcao = input("Escolha uma opção: ")
 
@@ -53,6 +54,20 @@ def menu():
                 print("\n❌ Tarefa não encontrada.")
 
         elif opcao == "4":
+
+            gerenciador.listar_tarefas()
+
+            if gerenciador.quantidade_tarefas() == 0:
+                continue
+
+            numero = int(input("\nNúmero da tarefa para excluir: ")) - 1
+
+            if gerenciador.excluir_tarefa(numero):
+                print("\n✅ Tarefa excluída com sucesso!")
+            else:
+                print("\n❌ Tarefa não encontrada.")
+
+        elif opcao == "5":
             print("\nEncerrando o sistema...")
             break
 

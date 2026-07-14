@@ -33,6 +33,12 @@ class TaskManager:
             return True
         return False
 
+    def excluir_tarefa(self, indice):
+        if 0 <= indice < len(self.tarefas):
+            self.tarefas.pop(indice)
+            return True
+        return False
+
 
 def menu():
     gerenciador = TaskManager()
@@ -42,7 +48,8 @@ def menu():
         print("1 - Adicionar tarefa")
         print("2 - Listar tarefas")
         print("3 - Editar tarefa")
-        print("4 - Sair")
+        print("4 - Excluir tarefa")
+        print("5 - Sair")
 
         opcao = input("Escolha uma opção: ")
 
@@ -76,6 +83,22 @@ def menu():
                 print("\n❌ Por favor, digite um número válido!")
 
         elif opcao == "4":
+            gerenciador.listar_tarefas()
+            if gerenciador.quantidade_tarefas() == 0:
+                continue
+
+            try:
+                numero = int(
+                    input("\nNúmero da tarefa que deseja excluir: ")) - 1
+
+                if gerenciador.excluir_tarefa(numero):
+                    print("\n✅ Tarefa excluída com sucesso!")
+                else:
+                    print("\n❌ Tarefa não encontrada.")
+            except ValueError:
+                print("\n❌ Por favor, digite um número válido!")
+
+        elif opcao == "5":
             print("\nEncerrando o sistema...")
             break
         else:
